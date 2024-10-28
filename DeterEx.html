@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Determinantes - IA-Porandu</title>
+    <link rel="stylesheet" href="Dis.css">
+</head>
+<body>
+    <div class="header">
+        <button id="toggleSidebar" class="menu-btn">
+            &#9776; <!-- Icono de tres líneas horizontales -->
+        </button>
+        <div class="title-logo">
+            <img src="logo.png" alt="Logo IA-Porandu" class="logo">
+            <h1 class="title">IA-Porandu > Examen de Determinantes</h1>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Modo Noche/Día</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Examen de Determinantes</h2>
+        <form id="examForm">
+            <div class="question">
+                <h3>1. ¿Cuál es el determinante de una matriz 2x2 con elementos a, b, c y d?</h3>
+                <label><input type="radio" name="q1" value="a"> a) a * d + b * c</label><br>
+                <label><input type="radio" name="q1" value="b"> b) a * d - b * c</label><br>
+                <label><input type="radio" name="q1" value="c"> c) a + d - b + c</label>
+            </div>
+
+            <div class="question">
+                <h3>2. ¿Cuál de las siguientes afirmaciones es cierta sobre el determinante de una matriz?</h3>
+                <label><input type="radio" name="q2" value="a"> a) Si una matriz es invertible, su determinante es cero</label><br>
+                <label><input type="radio" name="q2" value="b"> b) Si el determinante es cero, la matriz no es invertible</label><br>
+                <label><input type="radio" name="q2" value="c"> c) El determinante siempre es positivo</label>
+            </div>
+
+            <div class="question">
+                <h3>3. ¿Qué sucede con el determinante si se intercambian dos filas de una matriz?</h3>
+                <label><input type="radio" name="q3" value="a"> a) No cambia</label><br>
+                <label><input type="radio" name="q3" value="b"> b) Se multiplica por -1</label><br>
+                <label><input type="radio" name="q3" value="c"> c) Se vuelve cero</label>
+            </div>
+
+            <div class="question">
+                <h3>4. ¿Cuál es el determinante de una matriz triangular?</h3>
+                <label><input type="radio" name="q4" value="a"> a) La suma de los elementos diagonales</label><br>
+                <label><input type="radio" name="q4" value="b"> b) El producto de los elementos diagonales</label><br>
+                <label><input type="radio" name="q4" value="c"> c) La suma de las filas</label>
+            </div>
+
+            <div class="question">
+                <h3>5. ¿Para qué se utiliza el determinante de una matriz en álgebra lineal?</h3>
+                <label><input type="radio" name="q5" value="a"> a) Para resolver sistemas de ecuaciones lineales</label><br>
+                <label><input type="radio" name="q5" value="b"> b) Para hallar la inversa de la matriz</label><br>
+                <label><input type="radio" name="q5" value="c"> c) Todas las anteriores</label>
+            </div>
+
+            <button type="button" onclick="calcularNota()" class="submit-btn">Enviar respuestas</button>
+        </form>
+        
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        // Modo noche/día
+        const toggle = document.getElementById('modeToggle');
+        toggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggle.checked);
+        });
+
+        // Mostrar/ocultar barra lateral
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+        });
+
+        // Función para calcular la nota
+        function calcularNota() {
+            const respuestasCorrectas = {
+                q1: 'b',
+                q2: 'b',
+                q3: 'b',
+                q4: 'b',
+                q5: 'c'
+            };
+
+            let puntaje = 0;
+            const totalPreguntas = Object.keys(respuestasCorrectas).length;
+
+            // Recorre cada respuesta y verifica si es correcta
+            for (const [pregunta, respuestaCorrecta] of Object.entries(respuestasCorrectas)) {
+                const seleccion = document.querySelector(`input[name="${pregunta}"]:checked`);
+                if (seleccion && seleccion.value === respuestaCorrecta) {
+                    puntaje++;
+                }
+            }
+
+            // Muestra la calificación
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = `<h3>Tu calificación: ${puntaje} de ${totalPreguntas}</h3>`;
+        }
+    </script>
+</body>
+</html>

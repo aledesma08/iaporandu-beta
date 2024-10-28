@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Interfaz Cursos IA-Porandu</title>
+    <title>Interfaz Simplificada IA-Porandu</title>
     <link rel="stylesheet" href="Dis.css">
 </head>
 <body>
     <div class="header">
-        <button id="toggleSidebar" class="menu-btn">
+        <button id="toggleSidebar" class="menu-btn" aria-label="Toggle Sidebar">
             &#9776; <!-- Icono de tres líneas horizontales -->
         </button>
         <div class="title-logo">
@@ -16,25 +16,26 @@
             <h1 class="title">IA-Porandu</h1>
         </div>
     </div>
+    
     <div class="sidebar" id="sidebar">
         <ul>
             <li>
                 <label class="switch">
-                    <input type="checkbox" id="modeToggle">
+                    <input type="checkbox" id="modeToggle" aria-label="Modo Noche/Día">
                     <span class="slider"></span>
                 </label>
                 <span>Modo Noche/Día</span>
             </li>
         </ul>
     </div>
-    <div class="content">
-        <a href="Mate.html" class="course-card">
-            <p>Matemática</p>
-        </a>
 
+    <div class="content">
+        <a href="Colec.html" class="course-card">
+            <p>C.E.D.M "Virgen de la Merced"</p>
+        </a>
         <a href="cre.html" class="course-card create-card">
             <p class="add-symbol">+</p>
-            <p>Crear</p>
+            <p>Agregar</p>
         </a>
     </div>
 

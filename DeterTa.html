@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario de Determinantes</title>
+    <style>
+        /* Estilo general */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #527246;
+            color: #333;
+            transition: margin-left 0.3s ease; /* Transición para el margen */
+        }
+
+        /* Modo noche */
+        body.dark-mode {
+            background-color: #2e2e2e;
+            color: #ffffff;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            background-color: #4285f4;
+            color: white;
+        }
+
+        .menu-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+
+        .title-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 30px; /* Tamaño del logo ajustado */
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .title {
+            margin: 0;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 15px;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            top: 60px;
+            bottom: 0;
+            left: -220px; /* Oculto inicialmente */
+            transition: left 0.3s ease;
+        }
+
+        .sidebar.visible {
+            left: 0; /* Despliega la barra lateral */
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            color: #333;
+        }
+
+        .content {
+            display: flex; /* Alinea los elementos hijos en una fila */
+            flex-direction: column; /* Cambiado a columna para que el contenido se apile */
+            margin-left: 20px; /* Espacio inicial */
+            padding: 20px;
+            transition: margin-left 0.3s ease; /* Transición para el margen */
+        }
+
+        /* Ajustar margen al abrir la barra lateral */
+        .sidebar.visible ~ .content {
+            margin-left: 220px; /* Desplaza el contenido cuando la barra lateral está visible */
+        }
+
+        .quiz-container {
+            background-color: #e8f0fe;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px; /* Espacio superior */
+        }
+
+        .quiz-question {
+            margin-bottom: 15px; /* Espacio entre preguntas */
+            font-weight: bold;
+        }
+
+        .quiz-options {
+            margin-left: 20px; /* Espacio para las opciones */
+        }
+
+        .quiz-option {
+            margin-bottom: 10px; /* Espacio entre opciones */
+        }
+
+        .quiz-option input {
+            margin-right: 10px; /* Espacio a la derecha del checkbox */
+        }
+
+        /* Estilo para los botones individuales */
+        .button-container {
+            display: flex; /* Utiliza flexbox para alinear los elementos */
+            justify-content: flex-end; /* Alinea los botones al final del contenedor (a la derecha) */
+            flex-wrap: nowrap; /* Asegura que los botones no se ajusten a la siguiente línea */
+            gap: 10px; /* Espacio entre los botones */
+            margin-top: 20px; /* Margen superior para separar del contenido anterior */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <button class="menu-btn" id="menu-toggle">&#9776;</button>
+        <div class="title-logo">
+            <img src="logo.png" alt="Logo" class="logo"> <!-- Cambia el nombre de la imagen del logo -->
+            <h1 class="title">IA-Porandu</h1>
+        </div>
+    </div>
+
+    <div class="sidebar" id="sidebar">
+        <label class="switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+        <span>Cambiar a modo noche</span>
+    </div>
+
+    <div class="content">
+        <div class="quiz-container">
+            <h2>Cuestionario de Determinantes</h2>
+
+            <div class="quiz-question">1. ¿Qué es un determinante?</div>
+            <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q1" value="a"> A) Un número asociado a una matriz.</label><br>
+                <label class="quiz-option"><input type="radio" name="q1" value="b"> B) Una variable en álgebra.</label><br>
+                <label class="quiz-option"><input type="radio" name="q1" value="c"> C) Un tipo de gráfico.</label><br>
+                <label class="quiz-option"><input type="radio" name="q1" value="d"> D) Un método de cálculo.</label>
+            </div>
+
+            <div class="quiz-question">2. ¿Cuál es la propiedad de un determinante?</div>
+            <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q2" value="a"> A) Cambia al intercambiar dos filas.</label><br>
+                <label class="quiz-option"><input type="radio" name="q2" value="b"> B) Siempre es positivo.</label><br>
+                <label class="quiz-option"><input type="radio" name="q2" value="c"> C) No se puede calcular.</label><br>
+                <label class="quiz-option"><input type="radio" name="q2" value="d"> D) Es siempre igual a cero.</label>
+            </div>
+
+            <div class="quiz-question">3. ¿Qué ocurre si una matriz tiene filas proporcionales?</div>
+            <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q3" value="a"> A) Su determinante es cero.</label><br>
+                <label class="quiz-option"><input type="radio" name="q3" value="b"> B) Su determinante es uno.</label><br>
+                <label class="quiz-option"><input type="radio" name="q3" value="c"> C) Su determinante es indefinido.</label><br>
+                <label class="quiz-option"><input type="radio" name="q3" value="d"> D) No afecta al determinante.</label>
+            </div>
+
+            <div class="quiz-question">4. ¿Cómo se calcula el determinante de una matriz 2x2?</div>
+            <div class="quiz-options">
+                <label class="quiz-option"><input type="radio" name="q4" value="a"> A) Producto de las diagonales.</label><br>
+                <label class="quiz-option"><input type="radio" name="q4" value="b"> B) Suma de los elementos.</label><br>
+                <label class="quiz-option"><input type="radio" name="q4" value="c"> C) Resta de los elementos.</label><br>
+                <label class="quiz-option"><input type="radio" name="q4" value="d"> D) Producto de las filas.</label>
+            </div>
+
+            <div class="button-container">
+                <button class="course-card">Enviar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const sidebar = document.getElementById('sidebar');
+        const darkModeToggle = document.getElementById('dark-mode-toggle');
+
+        menuToggle.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+        });
+
+        darkModeToggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', darkModeToggle.checked);
+        });
+    </script>
+</body>
+</html>

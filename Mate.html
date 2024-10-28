@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfaz de Cursos IA-Porandu</title>
+    <link rel="stylesheet" href="Dis.css">
+    <style>
+        /* Estilos adicionales para los botones de examen y tarea */
+        .info-btn-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin: 10px 0;
+        }
+
+        .action-btn {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 0 5px;
+        }
+
+        .action-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button id="toggleSidebar" class="menu-btn">
+            &#9776; <!-- Icono de tres líneas horizontales -->
+        </button>
+        <div class="title-logo">
+            <img src="logo.png" alt="Logo IA-Porandu" class="logo">
+            <h1 class="title">IA-Porandu</h1>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Modo Noche/Día</span>
+            </li>
+        </ul>
+    </div>
+    <div class="content">
+        <div class="info-btn-container">
+            <div class="video-container">
+                <iframe id="video" width="560" height="315" src="https://www.youtube.com/embed/jZIk90KQo6s" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <button id="changeInfoBtn" class="action-btn">Cambiar Información</button>
+            <button id="generateExamBtn" class="action-btn">Generar Examen</button>
+            <button id="generateTaskBtn" class="action-btn">Generar Tarea</button>
+        </div>
+        
+        <div class="study-plan" id="studyPlanContent">
+            <!-- Contenido inicial de determinantes -->
+            <h2 id="planTitle">Plan de Estudio de Determinante</h2>
+            <div id="studyContent">
+                <h3>1. Introducción a Determinantes</h3>
+                <p>Los determinantes son un concepto fundamental en álgebra lineal que permiten calcular el volumen de un paralelogramo en el espacio y resolver sistemas de ecuaciones lineales.</p>
+                
+                <h3>2. Propiedades de Determinantes</h3>
+                <ul>
+                    <li>El determinante de una matriz triangular es igual al producto de sus elementos diagonales.</li>
+                    <li>Intercambiar dos filas de una matriz cambia el signo de su determinante.</li>
+                    <li>Si una fila de una matriz es un múltiplo de otra, su determinante es cero.</li>
+                    <li>Si una matriz tiene filas idénticas, su determinante también es cero.</li>
+                </ul>
+                
+                <h3>3. Cálculo de Determinantes</h3>
+                <h4>3.1 Cálculo de Determinantes 2x2</h4>
+                <p>Para calcular el determinante de una matriz 2x2:</p>
+                <pre>
+                | a  b |
+                | c  d |
+                Determinante = ad - bc
+                </pre>
+                
+                <h4>3.2 Cálculo de Determinantes 3x3</h4>
+                <p>Para calcular el determinante de una matriz 3x3, puedes usar la regla de Sarrus o el método de cofactores.</p>
+                <pre>
+                | a  b  c |
+                | d  e  f |
+                | g  h  i |
+                Determinante = a(ei - fh) - b(di - fg) + c(dh - eg)
+                </pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Modo noche/día
+        const toggle = document.getElementById('modeToggle');
+        toggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggle.checked);
+        });
+
+        // Mostrar/ocultar barra lateral
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+        });
+
+        // Contenidos para alternar
+        const contentData = {
+            determinantes: {
+                title: "Plan de Estudio de Determinante",
+                videoUrl: "https://www.youtube.com/embed/jZIk90KQo6s",
+                htmlContent: `
+                    <h3>1. Introducción a Determinantes</h3>
+                    <p>Los determinantes son un concepto fundamental en álgebra lineal que permiten calcular el volumen de un paralelogramo en el espacio y resolver sistemas de ecuaciones lineales.</p>
+                    
+                    <h3>2. Propiedades de Determinantes</h3>
+                    <ul>
+                        <li>El determinante de una matriz triangular es igual al producto de sus elementos diagonales.</li>
+                        <li>Intercambiar dos filas de una matriz cambia el signo de su determinante.</li>
+                        <li>Si una fila de una matriz es un múltiplo de otra, su determinante es cero.</li>
+                        <li>Si una matriz tiene filas idénticas, su determinante también es cero.</li>
+                    </ul>
+                    
+                    <h3>3. Cálculo de Determinantes</h3>
+                    <h4>3.1 Cálculo de Determinantes 2x2</h4>
+                    <p>Para calcular el determinante de una matriz 2x2:</p>
+                    <pre>
+                    | a  b |
+                    | c  d |
+                    Determinante = ad - bc
+                    </pre>
+                    
+                    <h4>3.2 Cálculo de Determinantes 3x3</h4>
+                    <p>Para calcular el determinante de una matriz 3x3, puedes usar la regla de Sarrus o el método de cofactores.</p>
+                    <pre>
+                    | a  b  c |
+                    | d  e  f |
+                    | g  h  i |
+                    Determinante = a(ei - fh) - b(di - fg) + c(dh - eg)
+                    </pre>
+                `
+            },
+            matricesInversas: {
+                title: "Plan de Estudio de Matrices Inversas",
+                videoUrl: "https://www.youtube.com/embed/lrh5MKNZihQ",
+                htmlContent: `
+                    <h3>1. Introducción a Matrices Inversas</h3>
+                    <p>Las matrices inversas son esenciales en álgebra lineal, ya que permiten resolver sistemas de ecuaciones lineales y son utilizadas en diversas aplicaciones.</p>
+                    
+                    <h3>2. Propiedades de Matrices Inversas</h3>
+                    <ul>
+                        <li>Una matriz cuadrada A tiene una inversa si y solo si su determinante es diferente de cero.</li>
+                        <li>La inversa de una matriz A se denota como A^(-1) y se cumple que A * A^(-1) = I, donde I es la matriz identidad.</li>
+                        <li>El método de Gauss-Jordan se puede utilizar para encontrar la inversa de una matriz.</li>
+                    </ul>
+                    
+                    <h3>3. Cálculo de Matrices Inversas</h3>
+                    <p>Para encontrar la inversa de una matriz 2x2:</p>
+                    <pre>
+                    | a  b |
+                    | c  d |
+                    A^(-1) = 1/(ad - bc) * | d -b |
+                                         | -c a |
+                    </pre>
+                `
+            }
+        };
+
+        // Estado actual
+        let currentInfo = "determinantes";
+
+        // Cambiar información y video
+        document.getElementById('changeInfoBtn').addEventListener('click', () => {
+            // Alternar entre determinantes y matrices inversas
+            currentInfo = currentInfo === "determinantes" ? "matricesInversas" : "determinantes";
+            const info = contentData[currentInfo];
+
+            // Actualizar título y contenido HTML de la sección
+            document.getElementById('planTitle').textContent = info.title;
+            document.getElementById('studyContent').innerHTML = info.htmlContent;
+
+            // Cambiar video
+            document.getElementById('video').src = info.videoUrl;
+        });
+
+        // Botones para generar examen y tarea
+        document.getElementById('generateExamBtn').addEventListener('click', () => {
+            if (currentInfo === "determinantes") {
+                window.location.href = "DeterEx.html";
+            } else {
+                window.location.href = "MatrixEx.html";
+            }
+        });
+
+        document.getElementById('generateTaskBtn').addEventListener('click', () => {
+            if (currentInfo === "determinantes") {
+                window.location.href = "DeterTa.html";
+            } else {
+                window.location.href = "MatrixTa.html";
+            }
+        });
+    </script>
+</body>
+</html>

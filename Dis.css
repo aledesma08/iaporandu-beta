@@ -1,9 +1,9 @@
 /* Estilo general */
 body {
-    font-family: Arial, sans-serif;
+    font-family: Arial;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
+    background-color: #527246;
     color: #333;
     transition: margin-left 0.3s ease; /* Transición para el margen */
 }
@@ -46,12 +46,6 @@ body.dark-mode {
     margin: 0;
     font-size: 1.5em;
     font-weight: bold;
-}
-
-.class-selection {
-    margin-left: 10px; /* Espacio entre el título y el texto */
-    font-size: 1.2em; /* Tamaño de fuente */
-    color: white; /* Color del texto */
 }
 
 .switch {
@@ -129,6 +123,7 @@ input:checked + .slider:before {
 
 .content {
     display: flex; /* Alinea los elementos hijos en una fila */
+    flex-direction: column; /* Cambiado a columna para que el contenido se apile */
     margin-left: 20px; /* Espacio inicial */
     padding: 20px;
     transition: margin-left 0.3s ease; /* Transición para el margen */
@@ -151,7 +146,7 @@ input:checked + .slider:before {
     justify-content: center;
     text-align: center;
     font-size: 1.1em; /* Tamaño de fuente ajustado */
-    margin-right: 20px; /* Espacio entre los cuadrados */
+    margin-bottom: 20px; /* Espacio vertical entre los botones */
     text-decoration: none; /* Elimina el subrayado del enlace */
     color: inherit; /* Hereda el color del texto de su padre */
 }
@@ -176,6 +171,12 @@ input:checked + .slider:before {
     justify-content: center;
     text-align: center;
     font-size: 1.1em; /* Tamaño de fuente ajustado */
+    margin-bottom: 20px; /* Espacio vertical entre los botones */
+}
+
+.add-symbol {
+    font-size: 2em; /* Tamaño del símbolo + */
+    line-height: 1; /* Para centrar verticalmente */
 }
 
 body.dark-mode .sidebar {
@@ -184,4 +185,60 @@ body.dark-mode .sidebar {
 
 body.dark-mode .course-card {
     background-color: #4a4a4a;
+}
+
+/* Estilo para el contenedor del video */
+.video-container {
+    width: 40%; /* Ancho completo */
+    height: 400px; /* Aumentado a 400px para mayor altura */
+    display: flex;
+    justify-content: center; /* Centra el iframe */
+    align-items: center; /* Centra verticalmente el iframe */
+    overflow: hidden; /* Esconde el desbordamiento */
+}
+
+/* Estilo para el iframe del video */
+.video-container iframe {
+    width: 100%; /* Ajusta el ancho del iframe al 100% del contenedor */
+    height: 100%; /* Ajusta la altura del iframe al 100% del contenedor */
+    border: none; /* Elimina el borde del iframe */
+}
+
+/* Estilo para el contenedor del plan de estudio */
+.study-plan {
+    width: 100%; /* Ancho completo */
+    margin-top: 20px; /* Margen superior para separar del video */
+    padding: 20px;
+    background-color: #e8f0fe; /* Fondo similar a los cursos */
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.study-plan h2 {
+    margin-top: 0; /* Sin margen en la parte superior */
+}
+
+.study-plan ul {
+    list-style-type: none; /* Elimina el estilo de lista */
+    padding: 0; /* Elimina el padding */
+}
+
+.study-plan li {
+    margin: 10px 0; /* Espaciado entre los elementos de la lista */
+}
+
+/* Estilo para el contenedor de botones */
+.button-container {
+    display: flex;               /* Utiliza flexbox para alinear los elementos */
+    justify-content: flex-end;   /* Alinea los botones al final del contenedor (a la derecha) */
+    flex-wrap: nowrap;          /* Asegura que los botones no se ajusten a la siguiente línea */
+    gap: 10px;                  /* Espacio entre los botones */
+    margin-top: 40px;           /* Margen superior para separar del contenido anterior */
+}
+
+/* Estilo para los botones individuales */
+.button-container .course-card,
+.button-container .create-card {
+    flex: 0 0 200px;            /* Flex: no crecer ni encogerse y tiene un ancho fijo de 200px */
+    text-align: center;         /* Centra el texto en los botones */
 }

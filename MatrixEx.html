@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Examen de Matrices - IA-Porandu</title>
+    <link rel="stylesheet" href="Dis.css">
+</head>
+<body>
+    <div class="header">
+        <button id="toggleSidebar" class="menu-btn">
+            &#9776; <!-- Icono de tres líneas horizontales -->
+        </button>
+        <div class="title-logo">
+            <img src="logo.png" alt="Logo IA-Porandu" class="logo">
+            <h1 class="title">IA-Porandu > Examen de Matrices</h1>
+        </div>
+    </div>
+    <div class="sidebar" id="sidebar">
+        <ul>
+            <li>
+                <label class="switch">
+                    <input type="checkbox" id="modeToggle">
+                    <span class="slider"></span>
+                </label>
+                <span>Modo Noche/Día</span>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h2>Examen de Matrices</h2>
+        <form id="examForm">
+            <div class="question">
+                <h3>1. ¿Qué es una matriz?</h3>
+                <label><input type="radio" name="q1" value="b"> b) Una tabla de datos organizada en filas y columnas</label><br>
+                <label><input type="radio" name="q1" value="a"> a) Un número</label><br>
+                <label><input type="radio" name="q1" value="c"> c) Una figura geométrica</label>
+            </div>
+
+            <div class="question">
+                <h3>2. ¿Cómo se llama el valor en la primera fila y primera columna de una matriz?</h3>
+                <label><input type="radio" name="q2" value="a"> a) Elemento (1,1)</label><br>
+                <label><input type="radio" name="q2" value="b"> b) Determinante</label><br>
+                <label><input type="radio" name="q2" value="c"> c) Traza</label>
+            </div>
+
+            <div class="question">
+                <h3>3. ¿Qué determina si una matriz es invertible?</h3>
+                <label><input type="radio" name="q3" value="b"> b) Que el determinante sea distinto de cero</label><br>
+                <label><input type="radio" name="q3" value="a"> a) El tamaño de la matriz</label><br>
+                <label><input type="radio" name="q3" value="c"> c) Que todos los elementos sean iguales</label>
+            </div>
+
+            <div class="question">
+                <h3>4. ¿Cuál es el resultado de multiplicar una matriz por su inversa?</h3>
+                <label><input type="radio" name="q4" value="b"> b) La matriz identidad</label><br>
+                <label><input type="radio" name="q4" value="a"> a) Una matriz diagonal</label><br>
+                <label><input type="radio" name="q4" value="c"> c) Una matriz nula</label>
+            </div>
+
+            <div class="question">
+                <h3>5. ¿Qué operación se utiliza para calcular la inversa de una matriz?</h3>
+                <label><input type="radio" name="q5" value="b"> b) Determinación de cofactores y determinante</label><br>
+                <label><input type="radio" name="q5" value="a"> a) Suma de matrices</label><br>
+                <label><input type="radio" name="q5" value="c"> c) Multiplicación de matrices</label>
+            </div>
+
+            <button type="button" onclick="calcularNota()" class="submit-btn">Enviar respuestas</button>
+        </form>
+        
+        <div id="resultado" class="resultado"></div>
+    </div>
+
+    <script>
+        // Modo noche/día
+        const toggle = document.getElementById('modeToggle');
+        toggle.addEventListener('change', () => {
+            document.body.classList.toggle('dark-mode', toggle.checked);
+        });
+
+        // Mostrar/ocultar barra lateral
+        const toggleSidebar = document.getElementById('toggleSidebar');
+        const sidebar = document.getElementById('sidebar');
+        toggleSidebar.addEventListener('click', () => {
+            sidebar.classList.toggle('visible');
+        });
+
+        // Función para calcular la nota
+        function calcularNota() {
+            const respuestasCorrectas = {
+                q1: 'b',
+                q2: 'a',
+                q3: 'b',
+                q4: 'b',
+                q5: 'b'
+            };
+
+            let puntaje = 0;
+            const totalPreguntas = Object.keys(respuestasCorrectas).length;
+
+            // Recorre cada respuesta y verifica si es correcta
+            for (const [pregunta, respuestaCorrecta] of Object.entries(respuestasCorrectas)) {
+                const seleccion = document.querySelector(`input[name="${pregunta}"]:checked`);
+                if (seleccion && seleccion.value === respuestaCorrecta) {
+                    puntaje++;
+                }
+            }
+
+            // Muestra la calificación
+            const resultado = document.getElementById('resultado');
+            resultado.innerHTML = `<h3>Tu calificación: ${puntaje} de ${totalPreguntas}</h3>`;
+        }
+    </script>
+</body>
+</html>
